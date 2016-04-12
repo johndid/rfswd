@@ -1,0 +1,6 @@
+#! /usr/bin/env sh
+
+aclocal # -I m4
+autoconf
+autoheader
+automake -c -a --add-missing
