@@ -8,6 +8,7 @@ AC_CONFIG_SRCDIR([src/main.cpp])
 AC_CONFIG_HEADERS([config.h])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_PROG_AR
 
 # Checks for programs.
 AC_PROG_CXX
@@ -32,6 +33,9 @@ AC_REPLACE_FUNCS(strerror)
 AC_OUTPUT([
 Makefile
 src/Makefile
+src/socket/Makefile
+src/thread/Makefile
+src/file/Makefile
 man/Makefile
 test/Makefile
 doc/Makefile
