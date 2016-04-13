@@ -1,3 +1,5 @@
+#include <file.h>
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -25,7 +27,7 @@ const bool file::read(const string &filename,string &output)
     output = read(get_size());
     return (!output.empty());
   }
-  log::msg()->error("file::read -> failed - Couldn't open: " + filename);
+  cout << "file::read -> failed - Couldn't open: " << filename.c_str() << endl ;
   return false;
 }
 
@@ -36,7 +38,7 @@ const bool file::write(const string &filename, const string &data)
     to_end();
     return ret;
   }
-  log::msg()->error("file::write -> failed - Couldn't open: " + filename);
+  cout << "file::write -> failed - Couldn't open: " << filename.c_str() << endl;
   return false;
 }
 
@@ -47,7 +49,7 @@ const bool file::append(const std::string &filename,const std::string &data)
     to_end();
     return ret;
   }
-  log::msg()->error("file::append -> failed - Couldn't open: " + filename);
+  cout << "file::append -> failed - Couldn't open: " << filename << endl;
   return false;
 }
 
@@ -62,7 +64,7 @@ const unsigned long file::size(const std::string &filename)
   if(exist(filename)) {
     return size();
   }
-  log::msg()->error("file::size -> failed - no file named: " + filename);
+  cout << "file::size -> failed - no file named: " << filename.c_str() << endl;
   return 0;
 }
 
@@ -106,7 +108,7 @@ const string file::read(const unsigned long size) const
     delete [] buffer;
   }
   else {
-    log::msg()->error("Memory error!");
+    cout << "Memory error!" << endl;
   }
   return ret;
 }
@@ -120,12 +122,10 @@ const bool file::write(const std::string &data)
     if(num_bytes == data_size) {
       return true;
     }
-    log::msg()->error("file::write -> failed - Couldn't write: " + converter::int2string(data_size) + \
-				 " bytes, only: " + converter::int2string(num_bytes) + \
-				 " was written!");
+    cout << "file::write -> failed - Couldn't write: " << data_size << " bytes, only: " << num_bytes << " was written!" << endl;
     return false;
   }
-  log::msg()->error("file::write -> failed - data string empty");
+  cout << "file::write -> failed - data string empty" << endl;
   return false;
 }
 

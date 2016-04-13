@@ -24,6 +24,8 @@ enum exit_values {
     socket_error, ////< the switchboard could not start a listening socket
 };
 
+const static string localhost("127.0.0.1");
+
 /// the usage function prints the switchboards usage string.
 void usage() {
     cout << "rfswd [option] argument" << endl;
@@ -118,7 +120,7 @@ const char* get_host_ip(const char *host)
       }
     }
   }
-  return "127.0.0.1";
+  return localhost.c_str();
 }
 
 /// This enumeration carries the number of arguments that can be passed to the main program.
@@ -131,7 +133,7 @@ enum arguments
   max_args ///< the number of args that must be passed for the program to work
 };
 
-string host, port("8080"), log("rfswd.log");
+string host(localhost), port("8080"), log("rfswd.log");
 
 ///@b main
 ///This is the main application thread!
